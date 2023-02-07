@@ -1,0 +1,174 @@
+<WindowManager>:
+    id: screen_manager
+    HomeScreen:
+        id: home_screen
+        name: 'HomeScreen'
+        manager: screen_manager
+
+    PickScreen:
+        id: pick_screen
+        name: 'PickScreen'
+        manager: screen_manager
+
+    DayNightWindow:
+        id: day_night_window
+        name: 'DayNightWindow'
+        manager: screen_manager
+
+    FireScreen:
+        id: fire_screen
+        name: 'FireScreen'
+        manager: screen_manager
+
+
+<Button>
+    background_color: 0, 0, 0, 1
+
+
+<DayNightWindow>
+    FloatLayout:
+        AsyncImage:
+            source: 'all_assets/islam3.png'
+            allow_stretch: True
+            keep_ratio: True
+            size_hint_y: None
+            size_hint_x: None
+            width: self.parent.width
+            height: self.parent.width/self.image_ratio
+        Label:
+            id: label1
+            font_size: 15
+            text: root.string1
+            color: 0, 0, 0, 1
+            font_name: 'all_assets/fnnt'
+            pos_hint: {'x': .1, 'y': .15}
+        Label:
+            id: label2
+            font_size: 40
+            text: str(root.num)
+            color: 0, 0, 0, 1
+            pos_hint:{'x': .016, 'y': -.2}
+        Button:
+            text: '+'
+            on_release: root.plus()
+            size_hint: .25, .25
+            pos_hint: {'x': .5, 'y': 0}
+        Button:
+            text: '-'
+            on_release: root.minus()
+            size_hint:.25, .25
+            pos_hint: {'x': .25, 'y': 0}
+
+        Button:
+            text:root.next_string
+            font_name: 'all_assets/fnnt'
+            size_hint:.25, .25
+            pos_hint: {'x': .75, 'y': 0}
+            on_release:root.next1()
+        Button:
+            text:root.back_string
+            font_name: 'all_assets/fnnt'
+            size_hint:.25, .25
+            pos_hint: {'x': 0, 'y': 0}
+            on_release:
+                root.manager.transition.direction = "right"
+                app.root.current = "PickScreen"
+                root.back()
+
+<HomeScreen>
+    FloatLayout:
+        AsyncImage:
+            source: 'all_assets/islam3.png'
+            allow_stretch: True
+            keep_ratio: True
+            size_hint_y: None
+            size_hint_x: None
+            width: self.parent.width
+            height: self.parent.width/self.image_ratio
+        Label:
+            text: root.title
+            font_name: 'all_assets/fnnt'
+            color: 0, 0, 0, 1
+            pos_hint: {'x': 0, 'y': .12}
+            font_size: 100
+
+        Button:
+            text: root.start
+            font_name: 'all_assets/fnnt'
+            font_size: 20
+            on_release:
+                app.root.current = 'PickScreen'
+            size_hint:.35, .35
+            pos_hint: {'x': .35, 'y': 0}
+
+<PickScreen>
+    FloatLayout:
+        AsyncImage:
+            source: 'all_assets/islam3.png'
+            allow_stretch: True
+            keep_ratio: True
+            size_hint_y: None
+            size_hint_x: None
+            width: self.parent.width
+            height: self.parent.width/self.image_ratio
+        Label:
+            text: root.pick_title
+            font_size: 20
+            pos_hint: {'x': 0, 'y': .4}
+
+        Button:
+            text:root.sub_title1
+            font_name: 'all_assets/fnnt'
+            on_release:
+                root.morning_press()
+                app.root.current = 'DayNightWindow'
+                root.manager.transition.direction = "left"
+            size_hint:.5, .20
+            pos_hint: {'x': 0, 'y': .5}
+
+        Button:
+            text:root.sub_title2
+            font_name: 'all_assets/fnnt'
+            on_release:
+                root.night_press()
+                app.root.current = 'DayNightWindow'
+                root.manager.transition.direction = "left"
+            size_hint:.5, .20
+            pos_hint: {'x': .5, 'y': .5}
+
+        Button:
+            text:root.sub_title3
+            font_name: 'all_assets/fnnt'
+            on_release:
+                root.fire_press()
+                app.root.current = 'FireScreen'
+                root.manager.transition.direction = "left"
+            size_hint:.5, .20
+            pos_hint: {'x': 0, 'y': .30}
+
+<FireScreen>
+    FloatLayout:
+        AsyncImage:
+            source: 'all_assets/islam3.png'
+            allow_stretch: True
+            keep_ratio: True
+            size_hint_y: None
+            size_hint_x: None
+            width: self.parent.width
+            height: self.parent.width/self.image_ratio
+
+        Label:
+            id: label1
+            text: root.string19
+            color: 0, 0, 0, 1
+            font_name: 'all_assets/fnnt'
+            pos_hint: {'x': .1, 'y': .15}
+
+        Button:
+            text:root.back_string
+            font_name:'all_assets/fnnt'
+            size_hint:.25, .25
+            pos_hint: {'x': 0, 'y': 0}
+            on_release:
+                app.root.current = "PickScreen"
+                root.manager.transition.direction = "right"
