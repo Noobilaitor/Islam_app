@@ -47,7 +47,7 @@ requirements = python3,kivy
 presplash.filename = %(source.dir)s/all_assets/images.jpg
 
 # (str) Icon of the application
-icon.filename = %(source.dir)s//all_assets/images.jpg
+icon.filename = %(source.dir)s/all_assets/images.jpg
 
 # (list) Supported orientations
 # Valid options are: landscape, portrait, portrait-reverse or landscape-reverse
